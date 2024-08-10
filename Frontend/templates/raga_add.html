@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ragas</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    
+    {% include 'navbar.html' %}
+
+    <div id="centerpiece_box">
+        <h2>Raga Adding Page</h2>
+
+        <a href="/inventory/ragas/">
+            <button>Back</button>
+        </a>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ raga_form.as_p }}
+            <input type="submit" value="Add Raga">
+        </form>
+    
+    </div>
+
+    <div id="footer"> (c) Copyright Raga Surabhi 2014-2024. All rights are reserved. <br>All audio content on this website are strictly for personal use only. 
+        See <a style="color: #FFFFE0;text-decoration:underline;" href="/privacy">Privacy Policy</a>
+        <br>
+    
+        (website built using <a style="color: #FFFFE0;text-decoration:underline;" href="https://www.djangoproject.com">Django project</a>) 
+        <br>
+        
+        &nbsp;
+    
+    </div>
+</body></html>

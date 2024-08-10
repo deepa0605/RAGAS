@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Raga {{raga.name}} - Raga Surabhi</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <style>
+        h2 {
+            margin-bottom: 0.5em;
+        }
+        .janyam {
+            font-style: italic;
+            font-size: 13px;
+            margin-top: -0.6em;
+        }
+        .arohanam {
+            margin-bottom: 0.3em; 
+            font-size: 20px;
+        }
+        .avrohanam {
+            font-size: 20px;
+            margin-top: -0.2em;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div id="logobanner_box0">
+    <div>
+    <div id="logobanner_box1"><a href="/carnatic-music/../index.html"><img id="ragaImageElement" height="150" src="{% static 'assets/images/ragasurabhi_logo.png' %}"></a></div>
+    <div id="logobanner_box2">
+    <div id="navi_top_box0">
+    <ul class="navi_top_ul">
+    <li class="navi_top_li"><a class="navi_top_a_off" href="/carnatic-music/aboutus.html">About Us</a></li>
+    <li class="navi_top_li"><a class="navi_top_a_off" href="/carnatic-music/weekly-blog.html">Blog</a></li>
+    <li class="navi_top_li"><a class="navi_top_a_off" href="/carnatic-music/specials.html">Specials</a></li>
+    <li class="navi_top_li"><a class="navi_top_a_off" href="/carnatic-music/new-to-carnatic-music.html">FAQ</a></li>
+    <li class="navi_top_li" style="padding: 0px; padding-top: 5px;"><a class="fb_tw_imglink" href="http://www.facebook.com/ragasurabhi"> <img id="fbImageElement" height="25" width="25" title="Raga Surabhi Facebook page" src="{% static 'assets/images/facebook_logo.png' %}"></a></li>
+    <li class="navi_top_li" style="padding: 0px; padding-top: 5px;"><a class="fb_tw_imglink" href="http://www.youtube.com/ragasurabhi"> <img id="ytImageElement" height="25" width="25" title="Raga Surabhi Youtube page" src="{% static 'assets/images/youtube_icon.png' %}"></a></li>
+    </ul>
+    </div>
+    <div id="logobanner_box2_1"><span id="banner">RAGA SURABHI</span></div>
+    <div id="logobanner_box2_2"><span id="bannermotto">Raga identification made easy!</span></div>
+    <div style="clear: both;"></div>
+    </div>
+    </div>
+    </div>
+    {% include 'navbar.html' %}
+
+    <div id="centerpiece_box">
+        
+    <h2>Raga {{ raga.name }}</h2>
+    <p class="janyam"> {{ raga.janyam }}</p>
+    <p class="arohanam"><strong>Arohanam:</strong> {{ raga.arohanam }}</p>
+    <p class="avrohanam"><strong>Avrohanam:</strong> {{ raga.avrohanam }}</p>
+
+    
+    </div>
+
+
+    <div id="footer"> (c) Copyright Raga Surabhi 2014-2024. All rights are reserved. <br>All audio content on this website are strictly for personal use only. 
+        See <a style="color: #FFFFE0;text-decoration:underline;" href="/privacy">Privacy Policy</a>
+        <br>
+    
+        (website built using <a style="color: #FFFFE0;text-decoration:underline;" href="https://www.djangoproject.com">Django project</a>) 
+        <br>
+        
+        &nbsp;
+    
+    </div>
+
+    <script src="{% static 'js/app.js'%}"></script>
+</body></html>

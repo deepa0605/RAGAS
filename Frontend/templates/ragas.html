@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ragas</title>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    
+    
+    {% include 'navbar.html' %}
+
+    <div id="centerpiece_box">
+    
+        <div class="body_whatsnew_box">
+      <span class="body_whatsnew_text">
+        <hr><span style="font-size: 140%"> <a href="https://ragasurabhi.com/carnatic-music/week-750-raga-handshake-special-match.html" class="simplelink">   Special Quiz 750 </a> </span><br> <br><span style="font-size: 120%"> <iframe width="560" height="315" src="https://www.youtube.com/embed/_EjvNh7TO34?si=yN-2iVs0fpcwJPf1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>   <br>  </span> <hr>  
+      The Raga Surabhi Weekly Quiz Contest:<br>
+      <a style="text-decoration: underline;" href="/carnatic-music/raga-surabhi-quiz/quiz--quiz0752.html"> Quiz 752</a> (Open)
+      &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;
+      <a style="text-decoration: underline;" href="/carnatic-music/raga-surabhi-quiz/quiz--quiz0751.html"> Quiz 751</a> (Closed)
+      &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;
+            <a style="text-decoration: underline;" href="/leaderboard"> Leaderboard (Dec, 2023)</a>
+            &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;
+      <a style="text-decoration: underline;" href="/carnatic-music/weekly-blog/weekly-blog--week0752--week-752-updates.html"> Blog (752)</a>
+    &nbsp;
+      </span>
+    </div>
+    
+    <h2 class="body_heading">Ragas</h2><hr>
+        <div class="body_preamble_box">
+            <span class="body_preamble_text">
+                Raga can be defined as a combination of few musical notes and is the most fundamental concept in Carnatic music.  All compositions and artiste's improvisations that we hear in concert platforms are all raga based.  It is always a thrill for a true carnatic rasika to be able to identify and appreciate the ragas being rendered in any concert. 
+                <p>
+                Raga Surabhi provides an easy approach for identifying, appreciating and understanding ragas with audio demonstrations.  Apart from addressing every raga with its arohanam-avarohanam and a carnatic song, we have also provided a beginner-friendly raga signature, a Raga Surabhi exclusive, to make the grasp of ragas easy for all rasikas.  Cine audio clips have also been provided wherever possible to reach out to light-music rasikas :) 
+                </p>            
+            </span>
+        </div>
+        <div style="clear: both;"></div>
+        <table>
+            <tbody>
+            {% for raga in ragas %}
+            <tr>
+                <td>
+                    <a href="{% url 'raga_detail' raga.id %}">
+                        <span class="raga-name">{{ raga.name }}</span>
+                    </a>
+                    <span class="raga-details">( Week {{ raga.week }}: {{ raga.date|date:"M d, Y" }} )</span> 
+                </td>  
+                </tr> 
+                
+            {% endfor %}
+        </tbody>
+        </table>
+        <a href="/inventory/raga/add/">
+            <button>Add Raga</button>
+        </a>
+    </div>
+
+
+    <div id="footer"> (c) Copyright Raga Surabhi 2014-2024. All rights are reserved. <br>All audio content on this website are strictly for personal use only. 
+        See <a style="color: #FFFFE0;text-decoration:underline;" href="/privacy">Privacy Policy</a>
+        <br>
+    
+        (website built using <a style="color: #FFFFE0;text-decoration:underline;" href="https://www.djangoproject.com">Django project</a>) 
+        <br>
+        
+        &nbsp;
+    
+    </div>
+
+    <script src="{% static 'js/app.js'%}"></script>
+</body></html>
