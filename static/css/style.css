@@ -26,9 +26,7 @@ body {
 a {
     text-decoration: none;
 }
-a {
-    text-decoration: none;
-}
+
 a:-webkit-any-link{
     cursor: pointer;
     color: webkit link;
@@ -58,13 +56,7 @@ img {
     display: flex;
     flex-direction: row-reverse;
 }
-ul {
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-}
+
 .navi_top_a_off {
     padding: 5px;
     border-bottom: 2px solid #FE9B27;
@@ -133,6 +125,12 @@ ul {
     width: 890px;
 }
 
+.navi_main_li{
+    list-style: none;
+    float: left;
+    padding-bottom: 0px;
+}
+
 ul {
     display: block;
     margin-block-start: 1em;
@@ -142,14 +140,14 @@ ul {
     padding-inline-start: 40px;
 }
 
-.navi_main_li {
-    float: left;
-    padding-bottom: 0px;
+.relation::marker{
+    content: '* ';
+    line-height: 1.5;
+    font-family: 'Simonetta';
 }
 
-li {
-    display: list-item;
-    text-align: -webkit-match-parent;
+.relation a {
+    color: #801010;
 }
 
 .navi_main_a_on {
@@ -252,7 +250,8 @@ hr {
     margin-inline-end: auto;
     overflow: hidden;
     border-style: inset;
-    border-width: 1px;
+    border-width: 0px;
+    
 }
 
 .simplelink {
@@ -338,13 +337,6 @@ p {
     color: #FFEBCD;
 }
 
-.body_preamble_text{
-    font-family: 'Ubuntu', sans-serif;
-    font-size: 12pt;
-    font-style: italic;
-    color: #696969;
-}
-
 .body_preamble_box {
     width: 650px;
     background-color: #F5F5DC;
@@ -355,24 +347,296 @@ p {
     border: 1px dashed #C0C0C0;
     float: left;
 }
+
+.body_preamble_text {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 12pt;
+    font-style: italic;
+    color: #696969;
+}
+
+.body_epilogue_text {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 9pt;
+    font-style: italic;
+    color: #696969;
+}
+
+.body_box {
+    width: 650px;
+    background-color: #F5F5DC;
+    border: 1px dashed #C0C0C0;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    padding: 10px;
+    padding-bottom: 20px;
+}
+
 div {
     display: block;
+    unicode-bidi: isolate;
 }
 
-.raga-name {
+.name {
     font-family: 'Cherry Swash';  
-    font-size: 26px;  
-    color: #600;  
+    font-size: larger;  
+    color: #801010;  
     text-decoration: underline;
+    line-height: 2.5;
 }
 
-.raga-details {
+.details {
     font-family: 'Ubuntu',sans-serif;  
-    font-size: 12px;  
+    font-size: 9pt;  
     color: #3A5F0B;  
     font-style: italic;
 }
 
+h2 {
+    display: block;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+
+}
+
 .janyam {
-    font-size: smaller;
+    margin-bottom: 5px;
+    font-size: 10pt;
+    font-family: 'Simonetta', cursive;
+}
+
+.arohanam {
+    margin-bottom: 0.3em; 
+    font-size: 20px;
+    font-family: 'Simonetta';
+    font-weight: 600;
+}
+.avrohanam {
+    font-size: 20px;
+    margin-top: -0.2em;
+    font-family: 'Simonetta';
+    font-weight: 600;
+}
+
+.audio-list {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    display: block;
+}
+
+.audio-item {
+    width: auto;
+    background-color: #e08217;
+    border-color: #801010;
+    border-style: solid;
+    border-width: medium;
+    border: 1px solid #801010;
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    padding: 10px;
+    height: 25px;
+    display: block;
+    font-size: 1em;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+    margin-bottom: 5px;
+}
+
+.audio-item:hover {
+    background-color: #FE9B27;
+}
+
+.audio-item.playing {
+    background-color: #fe9b27;
+    color: #000; 
+}
+
+.audio-item.expanded {
+    height: 40px; 
+}
+
+.audio-item.expanded .progress-bar {
+    display: block;
+}
+
+.audio-item.expanded .song-info {
+    display: block;
+    position: absolute;
+    right: 10px; 
+    font-size: 12px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 2px 4px; 
+    background-color: #FFFFE0; 
+}
+
+.audio-container {
+    display: flex;
+    align-items: center;
+    min-height: 30px;
+    flex-direction: column;
+    padding: 3px;
+    overflow: hidden;
+    transition: background-color 0.3s;
+    position: relative;
+}
+
+.audio-controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.audio-player {
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    gap: 10px;
+}
+
+.play-pause-btn {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+}
+
+.audio-name {
+    margin: 0 10px;
+    flex-grow: 1;
+    font-size: 19px;
+    color: #FFFFE0;
+    font-family: 'Simonetta';
+}
+
+.audio-name:hover {
+    color: #000;
+}
+
+.volume-control {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    align-self: flex-end;
+    padding-right: 10px;
+}
+
+.progress-bar {
+    display: none;
+    height: 8px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: #FFFFE0;
+}
+
+.progress-bar::-webkit-progress-bar {
+    background-color: #FFFFE0;
+}
+
+.progress-bar::-webkit-progress-value {
+    background-color: #801010;
+}
+
+.progress-bar:hover::-webkit-progress-value {
+    background-color: #801010;
+}
+
+.song-info {
+    font-size: 16px;
+    border: 1px solid #000;
+    display: none;
+    border-radius: 4px;
+    margin-left: 10px;
+    padding: 2px 4px;
+    background-color: #fff;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.up-button {
+    font-family: 'Cherry Swash';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: underline;
+    padding: 10px 20px;
+    color: #801010;
+}
+
+.prev-button, .next-button {
+    font-family: 'Cherry Swash';
+    text-decoration: underline;
+    padding: 10px 20px;
+    color: #801010;
+}
+
+.navigation:not(:has(.prev-button)) .next-button {
+    margin-left: auto;
+    font-family: 'Cherry Swash';
+}
+
+.navigation:not(:has(.next-button)) .prev-button {
+    margin-right: auto;
+    font-family: 'Cherry Swash';
+}
+
+.body_subheading {
+    font-family:  'Berkshire Swash' cursive;
+    font-size: 18pt;
+    font-style: normal;
+    font-weight: normal;
+    border: 0;
+    margin: 0px;
+    margin-left: 0px;
+    padding: 0;
+
+}
+
+element.style{
+    clear: both;
+}
+
+.body_social_box {
+    width: 690px;
+    background-color: #F5F5DC;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid #CCCCFF;
+    height: 25px;
+}
+
+.body_social_ul {
+    list-style: none;
+    float: left;
+    margin: 0px;
+    padding: 0px;
+}
+
+.body_social_li {
+    float: left;
+    padding: 3px;
+    padding-bottom: 0px;
+}
+
+.body_assetpage_updatedtext {
+    margin: 0;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 9pt;
+    font-style: italic;
+    vertical-align: text-bottom;
+    color: #118800;
+    padding-top: 5px;
 }

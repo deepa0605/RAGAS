@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Varnam {{varnam.name}} - Raga Surabhi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Cherry+Swash:wght@400;700&family=Denk+One&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Playball&family=Simonetta:ital,wght@0,400;0,900;1,400;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div id="centerpiece_box">
+        <div class="navigation">
+            {% if prev_varnam %}
+                <a href="{% url 'varnam_detail' prev_varnam.name %}" class="prev-button">Prev ({{ prev_varnam.name }})</a>
+            {% endif %}
+            
+            <a href="{% url 'varnam_list' %}" class="up-button">| Up |</a>
+            
+            {% if next_varnam %}
+                <a href="{% url 'varnam_detail' next_varnam.name %}" class="next-button">Next ({{ next_varnam.name }})</a>
+            {% endif %}
+        </div>
+        
+        <hr>
+        
+    <h2 class="body_heading">Varnam {{ varnam.name }}</h2>
+    <div class="body_social_box">
+        <ul class="body_social_ul">
+            <li class="body_social_li">
+                <div class="body_assetpage_updatedtext" style="float:left; width:160px" ;="">Posted: #{{varnam.updated_week}}, {{varnam.updated_date|date:"M d, Y"}} </div>
+            </li>
+        </ul>
+    </div>
+
+    <ul class="audio-list">
+        <!-- Song Audio -->
+        <li class="audio-item">
+            {% if varnam.varna_clip_file %}
+            <div class="audio-container">
+                <div class="audio-controls">
+                    <div class="audio-player">
+                        <img class="play-pause-btn" src="{% static 'assets/icons/play-button.png' %}" alt="Play" height="25" width="25" audio-play="{% static 'assets/icons/play-button.png' %}" audio-pause="{% static 'assets/icons/pause-button.png' %}">
+                    </div>
+                    <span class="audio-name">{{ varnam.name }}</span>
+                </div>
+                <progress class="progress-bar" value="0" max="100"></progress>
+                <div class="song-info">00:00 / 00:00</div>
+                <audio class="audioPlayer" src="{{ varnam.varna_clip_file.url }}"></audio>
+            </div>
+            {% endif %}
+        </li>
+</ul>
+    <div>
+                
+            {% for raga in varnam.related_ragas.all %}
+            <li class="relation">Raga:<a href="{% url 'raga_detail' raga.name %}">{{ raga.name }}</a></li>
+            {% endfor %}
+            
+    </div>
+
+    
+     <li class="relation">   Tala: {{ varnam.tala }}</li>
+    
+
+    <li class="relation">
+        Composer: {{ varnam.composer }}
+    </li>
+
+    <div>
+            
+        {% for song in varnam.related_songs.all %}
+        <li class="relation"> Related Song: <a href="{% url 'song_detail' song.name %}"><u>{{ song.name }}</u></a></li>
+        {% endfor %}
+    </div>
+
+    
+    <hr>
+
+    <div class="navigation">
+        {% if prev_varnam %}
+            <a href="{% url 'varnam_detail' prev_varnam.name %}" class="prev-button">Prev ({{ prev_varnam.name }})</a>
+        {% endif %}
+        
+        <a href="{% url 'varnam_list' %}" class="up-button">| Up |</a>
+        
+        {% if next_varnam %}
+            <a href="{% url 'varnam_detail' next_varnam.name %}" class="next-button">Next ({{ next_varnam.name }})</a>
+        {% endif %}
+    </div>
+
+    <div class="body_preamble_box">
+        <span class="body_epilogue_text">
+            A collection of various compositions, a few common ones, a few rare ones, some slokas, viruttams and several rasika requests.            
+        </span>
+    </div>
+    </div>
+
+ 
+    <div id="footer"> (c) Copyright Raga Surabhi 2014-2024. All rights are reserved. <br>All audio content on this website are strictly for personal use only. 
+        See <a style="color: #FFFFE0;text-decoration:underline;" href="/privacy">Privacy Policy</a>
+        <br>
+    
+        (website built using <a style="color: #FFFFE0;text-decoration:underline;" href="https://www.djangoproject.com">Django project</a>) 
+        <br>
+        
+        &nbsp;
+    
+    </div>
+
+    <script src="{% static 'js/app.js'%}"></script>
+</body>
+</html>    

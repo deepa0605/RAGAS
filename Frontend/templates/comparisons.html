@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Raga Comparisons</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Cherry+Swash:wght@400;700&family=Denk+One&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Playball&family=Simonetta:ital,wght@0,400;0,900;1,400;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <div id="centerpiece_box">
+    
+        <div class="body_whatsnew_box">
+      <span class="body_whatsnew_text">
+        <hr><span style="font-size: 140%"> <a href="https://ragasurabhi.com/carnatic-music/week-750-raga-handshake-special-match.html" class="simplelink">   Special Quiz 750 </a> </span><br> <br><span style="font-size: 120%"> <iframe width="560" height="315" src="https://www.youtube.com/embed/_EjvNh7TO34?si=yN-2iVs0fpcwJPf1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>   <br>  </span> <hr>  
+      The Raga Surabhi Weekly Quiz Contest:<br>
+      <a style="text-decoration: underline;" href="/carnatic-music/raga-surabhi-quiz/quiz--quiz0752.html"> Quiz 752</a> (Open)
+      &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;
+      <a style="text-decoration: underline;" href="/carnatic-music/raga-surabhi-quiz/quiz--quiz0751.html"> Quiz 751</a> (Closed)
+      &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;
+            <a style="text-decoration: underline;" href="/leaderboard"> Leaderboard (Dec, 2023)</a>
+            &nbsp;&nbsp;&nbsp; |  &nbsp;&nbsp;&nbsp;
+      <a style="text-decoration: underline;" href="/carnatic-music/weekly-blog/weekly-blog--week0752--week-752-updates.html"> Blog (752)</a>
+    &nbsp;
+      </span>
+    </div>
+    
+    <h2 class="body_heading">Raga Comparisons</h2><hr>
+        <div class="body_preamble_box">
+            <span class="body_preamble_text">
+                Have you been wondering many a times as to why you identified a Pantuvarali as Purvikalyani or an Ananda bhairavi as Reethi gowlai? Then....you are on the right page!! There are several such pairs of ragas which are so close that they have been termed as 'Twin Ragas'. You might want to check out our 'crux of the matter' audio demonstrations addressing various common twin raga pairs!             
+            </span>
+        </div>
+        <div style="clear: both;"></div>
+
+        <table>
+            <tbody>
+            {% for comparisons in comparisons %}
+            <tr>
+                <td>
+                    <a href="">
+                        <span class="name">{{ comparisons.name }}</span>
+                    </a>
+                    <span class="details">( Week {{ comparisons.posted_week }}: {{ comparisons.posted_date|date:"M d, Y" }} )</span> 
+                </td>  
+                </tr> 
+                
+            {% endfor %}
+        </tbody>
+        </table>
+        
+    </div>
+
+
+    <div id="footer"> (c) Copyright Raga Surabhi 2014-2024. All rights are reserved. <br>All audio content on this website are strictly for personal use only. 
+        See <a style="color: #FFFFE0;text-decoration:underline;" href="/privacy">Privacy Policy</a>
+        <br>
+    
+        (website built using <a style="color: #FFFFE0;text-decoration:underline;" href="https://www.djangoproject.com">Django project</a>) 
+        <br>
+        
+        &nbsp;
+    
+    </div>
+
+    <script src="{% static 'js/app.js'%}"></script>
+</body>
+</html>

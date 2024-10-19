@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Song {{song.name}} - Raga Surabhi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Cherry+Swash:wght@400;700&family=Denk+One&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Playball&family=Simonetta:ital,wght@0,400;0,900;1,400;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div id="centerpiece_box">
+        <div class="navigation">
+            {% if prev_song %}
+                <a href="{% url 'song_detail' prev_song.name %}" class="prev-button">Prev ({{ prev_song.name }})</a>
+            {% endif %}
+            
+            <a href="{% url 'song_list' %}" class="up-button">| Up |</a>
+            
+            {% if next_song %}
+                <a href="{% url 'song_detail' next_song.name %}" class="next-button">Next ({{ next_song.name }})</a>
+            {% endif %}
+        </div>
+        
+        <hr>
+        
+    <h2 class="body_heading">Song {{ song.name }}</h2>
+
+    <div class="body_social_box">
+        <ul class="body_social_ul">
+            <li class="body_social_li">
+                <div class="body_assetpage_updatedtext" style="float:left; width:160px" ;="">Posted: #{{song.updated_week}}, {{song.updated_date|date:"M d, Y"}} </div>
+            </li>
+        </ul>
+    </div>
+
+    <ul class="audio-list">
+        <!-- Song Audio -->
+        <li class="audio-item">
+            {% if song.song_clip_file %}
+            <div class="audio-container">
+                <div class="audio-controls">
+                    <div class="audio-player">
+                        <img class="play-pause-btn" src="{% static 'assets/icons/play-button.png' %}" alt="Play" height="25" width="25" audio-play="{% static 'assets/icons/play-button.png' %}" audio-pause="{% static 'assets/icons/pause-button.png' %}">
+                    </div>
+                    <span class="audio-name">{{ song.name }}</span>
+                </div>
+                <progress class="progress-bar" value="0" max="100"></progress>
+                <div class="song-info">00:00 / 00:00</div>
+                <audio class="audioPlayer" src="{{ song.song_clip_file.url }}"></audio>
+            </div>
+            {% endif %}
+        </li>
+</ul>
+    <div>
+        {% if song.related_ragas.all %}
+            
+                {% for raga in song.related_ragas.all %}
+                    <li class="relation">Raga:<a href="{% url 'raga_detail' raga.name %}">{{ raga.name }}</a></li>
+                {% endfor %}
+            
+        {% endif %}
+    </div>
+
+    
+     <li class="relation">   Tala: {{ song.tala }}</li>
+    
+
+    <li class="relation">
+        Composer: {{ song.composer }}
+    </li>
+
+    <div>
+    
+        {% if song.related_songs.all %}
+            
+                {% for related_song in song.related_songs.all %}
+                    <li class="relation">Related Song:<a href="{% url 'song_detail' related_song.name %}">{{ related_song.name }}</a></li>
+                {% endfor %}
+            
+        {% endif %}
+    </div>
+
+    <div>
+        
+        {% if raga.related_raga_comparison.all %}
+            
+                {% for comparison in raga.related_raga_comparison.all %}
+                   <li class="relation"> Related Raga Comparision<a href="{% url 'raga_comparison_detail' comparison.name %}">{{ comparison.name }}</a></li>
+                {% endfor %}
+            
+        {% endif %}
+    </div>
+    <hr>
+
+    <div class="navigation">
+        {% if prev_song %}
+            <a href="{% url 'song_detail' prev_song.name %}" class="prev-button">Prev ({{ prev_song.name }})</a>
+        {% endif %}
+        
+        <a href="{% url 'song_list' %}" class="up-button">| Up |</a>
+        
+        {% if next_song %}
+            <a href="{% url 'song_detail' next_song.name %}" class="next-button">Next ({{ next_song.name }})</a>
+        {% endif %}
+    </div>
+
+    <div class="body_preamble_box">
+        <span class="body_epilogue_text">
+            A collection of various compositions, a few common ones, a few rare ones, some slokas, viruttams and several rasika requests.            
+        </span>
+    </div>
+    </div>
+
+ 
+    <div id="footer"> (c) Copyright Raga Surabhi 2014-2024. All rights are reserved. <br>All audio content on this website are strictly for personal use only. 
+        See <a style="color: #FFFFE0;text-decoration:underline;" href="/privacy">Privacy Policy</a>
+        <br>
+    
+        (website built using <a style="color: #FFFFE0;text-decoration:underline;" href="https://www.djangoproject.com">Django project</a>) 
+        <br>
+        
+        &nbsp;
+    
+    </div>
+
+    <script src="{% static 'js/app.js'%}"></script>
+</body></html>    

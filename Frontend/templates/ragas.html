@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Ragas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Cherry+Swash:wght@400;700&family=Denk+One&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Playball&family=Simonetta:ital,wght@0,400;0,900;1,400;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
 </head>
 <body>
-    
-    
     {% include 'navbar.html' %}
 
     <div id="centerpiece_box">
@@ -43,10 +44,10 @@
             {% for raga in ragas %}
             <tr>
                 <td>
-                    <a href="{% url 'raga_detail' raga.id %}">
-                        <span class="raga-name">{{ raga.name }}</span>
+                    <a href="{% url 'raga_detail' raga.name %}">
+                        <span class="name">{{ raga.name }}</span>
                     </a>
-                    <span class="raga-details">( Week {{ raga.week }}: {{ raga.date|date:"M d, Y" }} )</span> 
+                    <span class="details">( Week {{ raga.posted_week }}: {{ raga.posted_date|date:"M d, Y" }} )</span> 
                 </td>  
                 </tr> 
                 

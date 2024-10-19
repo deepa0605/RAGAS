@@ -4,60 +4,173 @@
 <head>
     <meta charset="UTF-8">
     <title>Raga {{raga.name}} - Raga Surabhi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Cherry+Swash:wght@400;700&family=Denk+One&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Playball&family=Simonetta:ital,wght@0,400;0,900;1,400;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
-    <style>
-        h2 {
-            margin-bottom: 0.5em;
-        }
-        .janyam {
-            font-style: italic;
-            font-size: 13px;
-            margin-top: -0.6em;
-        }
-        .arohanam {
-            margin-bottom: 0.3em; 
-            font-size: 20px;
-        }
-        .avrohanam {
-            font-size: 20px;
-            margin-top: -0.2em;
-        }
-
-    </style>
 </head>
 <body>
-    
-    <div id="logobanner_box0">
-    <div>
-    <div id="logobanner_box1"><a href="/carnatic-music/../index.html"><img id="ragaImageElement" height="150" src="{% static 'assets/images/ragasurabhi_logo.png' %}"></a></div>
-    <div id="logobanner_box2">
-    <div id="navi_top_box0">
-    <ul class="navi_top_ul">
-    <li class="navi_top_li"><a class="navi_top_a_off" href="/carnatic-music/aboutus.html">About Us</a></li>
-    <li class="navi_top_li"><a class="navi_top_a_off" href="/carnatic-music/weekly-blog.html">Blog</a></li>
-    <li class="navi_top_li"><a class="navi_top_a_off" href="/carnatic-music/specials.html">Specials</a></li>
-    <li class="navi_top_li"><a class="navi_top_a_off" href="/carnatic-music/new-to-carnatic-music.html">FAQ</a></li>
-    <li class="navi_top_li" style="padding: 0px; padding-top: 5px;"><a class="fb_tw_imglink" href="http://www.facebook.com/ragasurabhi"> <img id="fbImageElement" height="25" width="25" title="Raga Surabhi Facebook page" src="{% static 'assets/images/facebook_logo.png' %}"></a></li>
-    <li class="navi_top_li" style="padding: 0px; padding-top: 5px;"><a class="fb_tw_imglink" href="http://www.youtube.com/ragasurabhi"> <img id="ytImageElement" height="25" width="25" title="Raga Surabhi Youtube page" src="{% static 'assets/images/youtube_icon.png' %}"></a></li>
-    </ul>
-    </div>
-    <div id="logobanner_box2_1"><span id="banner">RAGA SURABHI</span></div>
-    <div id="logobanner_box2_2"><span id="bannermotto">Raga identification made easy!</span></div>
-    <div style="clear: both;"></div>
-    </div>
-    </div>
-    </div>
+
     {% include 'navbar.html' %}
 
     <div id="centerpiece_box">
+        <!-- For ragas -->
+        <div class="navigation">
+            {% if prev_raga %}
+                <a href="{% url 'raga_detail' prev_raga.name %}" class="prev-button">Prev ({{ prev_raga.name }})</a>
+            {% endif %}
+            
+            <a href="{% url 'raga_list' %}" class="up-button">| Up |</a>
+            
+            {% if next_raga %}
+                <a href="{% url 'raga_detail' next_raga.name %}" class="next-button">Next ({{ next_raga.name }})</a>
+            {% endif %}
+        </div>
+         
+
+       <hr>
         
-    <h2>Raga {{ raga.name }}</h2>
-    <p class="janyam"> {{ raga.janyam }}</p>
-    <p class="arohanam"><strong>Arohanam:</strong> {{ raga.arohanam }}</p>
-    <p class="avrohanam"><strong>Avrohanam:</strong> {{ raga.avrohanam }}</p>
+    <h2 class="body_heading">Raga {{ raga.name }}</h2>
+    <span class="janyam"> 
+        {{ raga.melaraga_text }}
+        <a href="{% url 'raga_detail' raga.melaraga_key %}" style="text-decoration: underline;">
+            {{ raga.melaraga_key }}.
+        </a>        
+        Alias:    
+    </span>
+    
+    <div class="body_social_box">
+        <ul class="body_social_ul">
+            <li class="body_social_li">
+                <div class="body_assetpage_updatedtext" style="float:left; width:160px" ;="">Posted: #{{raga.updated_week}}, {{raga.updated_date|date:"M d, Y"}} </div>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+    <p class="arohanam">Arohanam: {{ raga.scale_aro }}</p>
+    <p class="avrohanam">Avrohanam: {{ raga.scale_avro }}</p>
+
+    <ul class="audio-list">
+        <!-- Arohanam-Avrohanam Audio -->
+        <li class="audio-item">
+            {% if raga.aro_clip_file %}
+            <div class="audio-container">
+                <div class="audio-controls">
+                    <div class="audio-player">
+                        <img class="play-pause-btn" src="{% static 'assets/icons/play-button.png' %}" alt="Play" height="25" width="25" audio-play="{% static 'assets/icons/play-button.png' %}" audio-pause="{% static 'assets/icons/pause-button.png' %}">
+                    </div>
+                    <span class="audio-name">Arohanam Avrohanam</span>
+                </div>
+                <progress class="progress-bar" value="0" max="100"></progress>
+                <div class="song-info">00:00 / 00:00</div>
+                <audio class="audioPlayer" src="{{ raga.aro_clip_file.url }}"></audio>
+            </div>
+            {% else %}
+            <p>No Arohanam-Avrohanam audio available.</p>
+            {% endif %}
+        </li>
+        <br>
+    
+        <!-- Signature Audio -->
+        <li class="audio-item">
+            {% if raga.sig_clip_file %}
+            <div class="audio-container">
+                <div class="audio-controls">
+                    <div class="audio-player">
+                        <img class="play-pause-btn" src="{% static 'assets/icons/play-button.png' %}" alt="Play" height="25" width="25" audio-play="{% static 'assets/icons/play-button.png' %}" audio-pause="{% static 'assets/icons/pause-button.png' %}">
+                    </div>
+                    <span class="audio-name">Signature</span>
+                </div>
+                <progress class="progress-bar" value="0" max="100"></progress>
+                <div class="song-info"></div>
+                <audio class="audioPlayer" src="{{ raga.sig_clip_file.url }}"></audio>
+            </div>
+            {% else %}
+            <p>No Signature audio available.</p>
+            {% endif %}
+        </li>
+        <br>
+    
+        <!-- Carnatic Audio -->
+        <li class="audio-item">
+            {% if raga.car_clip_file %}
+            <div class="audio-container">
+                <div class="audio-controls">
+                    <div class="audio-player">
+                        <img class="play-pause-btn" src="{% static 'assets/icons/play-button.png' %}" alt="Play" height="25" width="25" audio-play="{% static 'assets/icons/play-button.png' %}" audio-pause="{% static 'assets/icons/pause-button.png' %}">
+                    </div>
+                    <span class="audio-name">Carnatic</span>
+                </div>
+                <progress class="progress-bar" value="0" max="100"></progress>
+                <div class="song-info"></div>
+                <audio class="audioPlayer" src="{{ raga.car_clip_file.url }}"></audio>
+            </div>
+            {% else %}
+            <p>No Carnatic audio available.</p>
+            {% endif %}
+        </li>
+        <br>
+    
+        <!-- Cine Audio -->
+        <li class="audio-item">
+            {% if raga.cin_clip_file %}
+            <div class="audio-container">
+                <div class="audio-controls">
+                    <div class="audio-player">
+                        <img class="play-pause-btn" src="{% static 'assets/icons/play-button.png' %}" alt="Play" height="25" width="25" audio-play="{% static 'assets/icons/play-button.png' %}" audio-pause="{% static 'assets/icons/pause-button.png' %}">
+                    </div>
+                    <span class="audio-name">Cine</span>
+                </div>
+                <progress class="progress-bar" value="0" max="100"></progress>
+                <div class="song-info"></div>
+                <audio class="audioPlayer" src="{{ raga.cin_clip_file.url }}"></audio>
+            </div>
+            {% else %}
+            <p>No Cine audio available.</p>
+            {% endif %}
+        </li>
+    </ul>
 
     
+        {% for song in raga.related_songs.all %}
+        <li class="relation"> Related Song: <a href="{% url 'song_detail' song.name %}"><u>{{ song.name }}</u></a></li>
+        {% empty %}
+            <li>No related songs available.</li>
+        {% endfor %}
+    
+    <hr>
+    <div class="body_subheading">
+        From our YouTube channel:
     </div>
+    <hr>
+    <div style="clear: both;"></div>
+
+    <div class="navigation">
+        {% if prev_raga %}
+            <a href="{% url 'raga_detail' prev_raga.name %}" class="prev-button">Prev ({{ prev_raga.name }})</a>
+            {% else %}
+            <span class="prev-button">Prev(None)</span>
+        {% endif %}
+        
+        <a href="{% url 'raga_list' %}" class="up-button">| Up |</a>
+        
+        {% if next_raga %}
+            <a href="{% url 'raga_detail' next_raga.name %}" class="next-button">Next ({{ next_raga.name }})</a>
+            {% else %}
+            <span class="next-button">Next(None)</span>
+        {% endif %}
+    </div>
+<div class="body_box">
+        <span class="body_epilogue_text">
+            Raga can be defined as a combination of few musical notes and is the most fundamental concept in Carnatic music.  All compositions and artiste's improvisations that we hear in concert platforms are all raga based.  It is always a thrill for a true carnatic rasika to be able to identify and appreciate the ragas being rendered in any concert. 
+            <p>
+            Raga Surabhi provides an easy approach for identifying, appreciating and understanding ragas with audio demonstrations.  Apart from addressing every raga with its arohanam-avarohanam and a carnatic song, we have also provided a beginner-friendly raga signature, a Raga Surabhi exclusive, to make the grasp of ragas easy for all rasikas.  Cine audio clips have also been provided wherever possible to reach out to light-music rasikas :) 
+            </p>            
+        </span>
+  </div>  
+    
+</div>
 
 
     <div id="footer"> (c) Copyright Raga Surabhi 2014-2024. All rights are reserved. <br>All audio content on this website are strictly for personal use only. 
@@ -72,4 +185,5 @@
     </div>
 
     <script src="{% static 'js/app.js'%}"></script>
-</body></html>
+</body>
+</html>

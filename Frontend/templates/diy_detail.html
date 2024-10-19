@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> {{do_it_yourself.name}} - Raga Surabhi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Berkshire+Swash&family=Cherry+Swash:wght@400;700&family=Denk+One&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Playball&family=Simonetta:ital,wght@0,400;0,900;1,400;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    {% include 'navbar.html' %}
+
+    <div id="centerpiece_box">
+        
+    <h2 class="body_heading">{{ heading }} </h2>
+    <hr>
+
+    
+    <ul class="audio-list">
+        <!-- Arohanam-Avrohanam Audio -->
+        <li class="audio-item">
+            
+            <div class="audio-container">
+                <div class="audio-controls">
+                    <div class="audio-player">
+                        <img class="play-pause-btn" src="{% static 'assets/icons/play-button.png' %}" alt="Play" height="25" width="25" audio-play="{% static 'assets/icons/play-button.png' %}" audio-pause="{% static 'assets/icons/pause-button.png' %}">
+                    </div>
+                    <span class="audio-name"></span>
+                </div>
+                <progress class="progress-bar" value="0" max="100"></progress>
+                <div class="song-info">00:00 / 00:00</div>
+                <audio class="audioPlayer" src=""></audio>
+            </div>
+        </li>
+        <br>
+    
+        <!-- Signature Audio -->
+        <li class="audio-item">
+            
+            <div class="audio-container">
+                <div class="audio-controls">
+                    <div class="audio-player">
+                        <img class="play-pause-btn" src="{% static 'assets/icons/play-button.png' %}" alt="Play" height="25" width="25" audio-play="{% static 'assets/icons/play-button.png' %}" audio-pause="{% static 'assets/icons/pause-button.png' %}">
+                    </div>
+                    <span class="audio-name"></span>
+                </div>
+                <progress class="progress-bar" value="0" max="100"></progress>
+                <div class="song-info"></div>
+                <audio class="audioPlayer" src=""></audio>
+            </div>
+            
+        </li>
+        <br>
+    
+        <!-- Carnatic Audio -->
+        <li class="audio-item">
+            
+            <div class="audio-container">
+                <div class="audio-controls">
+                    <div class="audio-player">
+                        <img class="play-pause-btn" src="{% static 'assets/icons/play-button.png' %}" alt="Play" height="25" width="25" audio-play="{% static 'assets/icons/play-button.png' %}" audio-pause="{% static 'assets/icons/pause-button.png' %}">
+                    </div>
+                    <span class="audio-name"></span>
+                </div>
+                <progress class="progress-bar" value="0" max="100"></progress>
+                <div class="song-info"></div>
+                <audio class="audioPlayer" src=""></audio>
+            </div>
+        
+        </li>
+        <br>
+    
+    </ul>
+    <ul>
+        <li class="relation">
+            <a href="#" onclick="this.innerHTML ='{{question1_answer }}'; return false;">
+                Question 1 answer
+            </a>
+        </li>
+        <li class="relation">
+            <a href="#" onclick="this.innerHTML ='{{question2_answer }}'; return false;">
+                Question 2 answer
+            </a>
+        </li>
+        <li class="relation">
+            <a href="#" onclick="this.innerHTML ='{{question3_answer }}'; return false;">
+                Question 3 answer
+            </a>
+        </li>
+    </ul>
+    <div style="clear: both;"></div>
+
+        
+</div>
+
+
+    <div id="footer"> (c) Copyright Raga Surabhi 2014-2024. All rights are reserved. <br>All audio content on this website are strictly for personal use only. 
+        See <a style="color: #FFFFE0;text-decoration:underline;" href="/privacy">Privacy Policy</a>
+        <br>
+    
+        (website built using <a style="color: #FFFFE0;text-decoration:underline;" href="https://www.djangoproject.com">Django project</a>) 
+        <br>
+        
+        &nbsp;
+    
+    </div>
+
+    <script src="{% static 'js/app.js'%}"></script>
+</body>
+</html>
